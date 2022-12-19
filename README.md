@@ -8,7 +8,7 @@ conda env create -f environment_transformer.yml
 
 And you may need to run pip install timm to install timm library if you don't have it.
 
-Use followin gcommand to get clean datasets for training:
+Use following command to get clean datasets for training:
 
 unzip clean_resized_images.zip
 
