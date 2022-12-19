@@ -31,13 +31,13 @@ Currently, we provide OurAlgorithm, OurAlgorithm_MI, OurAlgorithm_SGM, OurAlgori
 
 * filename_prefix: additional names for the output file
 
-* target: targeted attack or non-targeted attack, 0 or 1
+* target: targeted attack or non-targeted attack, 0 for non-targeted attack or 1 for targeted attack. 
 
 Or you can simply run 
 ```
 sh run_attacks.sh OurAlgorithm 0 
 ```
-to triger the attack on four base models together.
+to triger the attack on four base models together. OurAlgorithm can be replace by any attack method mentoned above.
 
 After attack, all the adversarial examples will be saved in the paper_results folder.
 
