@@ -60,3 +60,5 @@ for example:
 ```
 !sh run_cnn_evaluate.sh 0 model_vit_base_patch16_224-method_OurAlgorithm-yours-0 0
 ```
+
+There are also many example commands for both attack and evaluation in the project.ipynb file.
