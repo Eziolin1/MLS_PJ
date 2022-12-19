@@ -4,7 +4,9 @@ First, git clone or download all the files under the same directory.
 
 Recover the environment setting at conda environment with command:
 
+```
 conda env create -f environment_transformer.yml
+```
 
 And you may need to run pip install timm to install timm library if you don't have it.
 
