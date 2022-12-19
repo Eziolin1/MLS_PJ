@@ -16,6 +16,7 @@ def arg_parse():
     parser.add_argument('--batch_size', type=int, default=20, metavar='N',
                     help='input batch size for reference (default: 16)')
     parser.add_argument('--model_name', type=str, default='', help='')
+    parser.add_argument('--target', type=str, default='0', help='')
     args = parser.parse_args()
     args.adv_path = os.path.join(BASE_ADV_PATH, args.adv_path)
     return args
@@ -30,6 +31,7 @@ if __name__ == '__main__':
     data_loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
 #     print (len(dataset))
     # Loading model
+#     print('loading model', args.model_name)
     model = get_model(args.model_name)
     model.cuda()
     model.eval()
@@ -63,16 +65,19 @@ if __name__ == '__main__':
 
             _, pred = output.detach().topk(1, 1, True, True)
             pred = pred.t()
-#             sum = sum + 1
-#             if(torch.squeeze(pred.cpu()).numpy() != batch_y.cpu().numpy()):
-#                 suc = suc + 1
+
             prediction += list(torch.squeeze(pred.cpu()).numpy())
             gts += list(batch_y.cpu().numpy())
-
-    for i in range(len(prediction)):
-        if(prediction[i] != gts[i]):
-            suc = suc + 1
-    print("Attack success rate on ", args.model_name, " is ", suc / len(prediction))
+    if args.target == '1':
+        for i in range(len(prediction)):
+            if(prediction[i] == 1 and gts[i] != 1):
+                suc = suc + 1
+        print("Attack success rate on ", args.model_name, " is ", suc / (len(prediction) - 1))
+    else:
+        for i in range(len(prediction)):
+            if(prediction[i] != gts[i]):
+                suc = suc + 1
+        print("Attack success rate on ", args.model_name, " is ", suc / len(prediction))
     df = pd.DataFrame(columns = ['path', 'pre', 'gt'])
     df['path'] = dataset.paths[:len(prediction)]
     df['pre'] = prediction
