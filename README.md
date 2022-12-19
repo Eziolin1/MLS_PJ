@@ -12,12 +12,16 @@ And you may need to run pip install timm to install timm library if you don't ha
 
 Use following command to get clean datasets for training:
 
+```
 unzip clean_resized_images.zip
+```
 
 # Attack
 The following command is for attack:
 
+```
 python our_attack.py --attack OurAlgorithm --gpu 0 --batch_size 1 --model_name vit_base_patch16_224 --filename_prefix yours --target 0
+```
 
 * the argument --attack is to determine the attack method
 
@@ -29,7 +33,11 @@ Currently, we provide OurAlgorithm, OurAlgorithm_MI, OurAlgorithm_SGM, OurAlgori
 
 * target: targeted attack or non-targeted attack, 0 or 1
 
-Or you can simply run sh run_attacks.sh OurAlgorithm 0 to triger the attack on four base models together.
+Or you can simply run 
+```
+sh run_attacks.sh OurAlgorithm 0 
+```
+to triger the attack on four base models together.
 
 After attack, all the adversarial examples will be saved in the paper_results folder.
 
@@ -40,12 +48,15 @@ sh run_evaluate.sh 0 model_{model_name}-method_{attack}-{filename_prefix}-{targe
 
 for example: 
 
+```
 !sh run_evaluate.sh 0 model_vit_base_patch16_224-method_OurAlgorithm-yours-0 0
+```
 
 The following command is for evaluate on CNNs:
 
 sh run_cnn_evaluate.sh 0 model_{model_name}-method_{attack}-{filename_prefix}-{target} target
 
 for example: 
-
+```
 !sh run_cnn_evaluate.sh 0 model_vit_base_patch16_224-method_OurAlgorithm-yours-0 0
+```
