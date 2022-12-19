@@ -29,6 +29,8 @@ target: targeted attack or non-targeted attack, 0 or 1
 
 Or you can simply run sh run_attacks.sh OurAlgorithm 0 to triger the attack on four base models together.
 
+After attack, all the adversarial examples will be saved in the paper_results folder.
+
 # Evaluate
 The following command is for evaluate on ViTs:
 
